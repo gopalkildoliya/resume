@@ -26,12 +26,24 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('dashboard', 'DashboardController@index');
+    Route::resource('project', 'ProjectController');
+    Route::resource('education', 'EducationController');
+    Route::resource('position', 'PositionController');
+    Route::resource('personal-detail', 'PersonalDetailController');
+    Route::resource('certification', 'CertificationController');
+    Route::resource('skill', 'SkillController');
+    Route::resource('volunteer', 'VolunteerController');
+    Route::resource('language', 'LanguageController');
+    Route::resource('award', 'AwardController');
+    Route::resource('additional', 'AdditionalController');
+
 });
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
 });
