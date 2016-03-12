@@ -14,6 +14,10 @@ class CreateSkillsTable extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('proficiency');
+            $table->integer('sort_order')->default(0);
+            $table->boolean('enable')->default(true);
             $table->timestamps();
         });
     }
