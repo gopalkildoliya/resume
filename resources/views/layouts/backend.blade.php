@@ -19,6 +19,8 @@
     -->
     <link rel="stylesheet" href="{{asset('dist/css/skins/skin-blue.min.css')}}">
 
+    @yield('head')
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -79,6 +81,8 @@ desired effect
 <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/app.min.js')}}"></script>
+
+@yield('scripts')
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Project;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('admin.project.index');
+        $projects = Project::orderBy('sort_order', 'asc')->get();
+        return view('admin.project.index', ['projects'=> $projects]);
     }
 
     /**
@@ -26,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.project.create');
     }
 
     /**
@@ -37,7 +39,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('working'))
+            $data['working'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Project::create($data);
+        return  redirect()->route('admin.project.index');
     }
 
     /**
@@ -59,7 +67,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('admin.project.edit', ['project'=>$project]);
     }
 
     /**
@@ -71,7 +80,14 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('working'))
+            $data['working'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Project::findOrFail($id)->update($data);
+        return  redirect()->route('admin.project.index');
+
     }
 
     /**
@@ -82,6 +98,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::findOrFail($id)->delete();
+        return redirect()->route('admin.project.index');
     }
 }
