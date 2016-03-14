@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Skill;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class SkillController extends Controller
      */
     public function index()
     {
-        return view('admin.skill.index');
+        $skills = Skill::orderBy('sort_order', 'asc')->get();
+        return view('admin.skill.index', ['skills'=> $skills]);
     }
 
     /**
@@ -37,7 +39,11 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Skill::create($data);
+        return  redirect()->route('admin.skill.index');
     }
 
     /**
@@ -59,7 +65,8 @@ class SkillController extends Controller
      */
     public function edit($id)
     {
-        //
+        $skill = Skill::findOrFail($id);
+        return view('admin.skill.edit', ['skill'=>$skill]);
     }
 
     /**
@@ -71,7 +78,11 @@ class SkillController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Skill::findOrFail($id)->update($data);
+        return  redirect()->route('admin.skill.index');
     }
 
     /**
@@ -82,6 +93,7 @@ class SkillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Skill::findOrFail($id)->delete();
+        return  redirect()->route('admin.skill.index');
     }
 }

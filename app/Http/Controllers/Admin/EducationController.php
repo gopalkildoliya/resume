@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Education;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class EducationController extends Controller
      */
     public function index()
     {
-        return view('admin.education.index');
+        $educations = Education::orderBy('sort_order', 'asc')->get();
+        return view('admin.education.index', ['educations'=> $educations]);
     }
 
     /**
@@ -26,7 +28,7 @@ class EducationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.education.create');
     }
 
     /**
@@ -37,7 +39,13 @@ class EducationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('studding'))
+            $data['studding'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Education::create($data);
+        return  redirect()->route('admin.education.index');
     }
 
     /**
@@ -59,7 +67,8 @@ class EducationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $education = Education::findOrFail($id);
+        return view('admin.education.edit', ['education'=>$education]);
     }
 
     /**
@@ -71,7 +80,13 @@ class EducationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('studding'))
+            $data['studding'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Education::findOrFail($id)->update($data);
+        return  redirect()->route('admin.education.index');
     }
 
     /**
@@ -82,6 +97,7 @@ class EducationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Education::findOrFail($id)->delete();
+        return  redirect()->route('admin.education.index');
     }
 }

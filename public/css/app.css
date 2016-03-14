@@ -1,0 +1,19 @@
+section.container-fluid{
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+
+.section-heading{
+    text-align: center;
+}
+
+
+section.introduction{
+    background: #449d44;
+    color: #fff;
+}
+section.project{
+    background: #1b8bbc;
+    color: #fff;
+}

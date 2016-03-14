@@ -98,18 +98,20 @@
             $('#start_date').daterangepicker({
                 singleDatePicker: true,
                 "showDropdowns": true,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
             });
 
-            $('#start_date').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('YYYY-MM-DD'));
-            });
+
             $('#end_date').daterangepicker({
                 singleDatePicker: true,
                 "showDropdowns": true,
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
             });
-            $('#end_date').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('YYYY-MM-DD'));
-            });
+
         });
     </script>
 @stop
