@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Position;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        return view('admin.position.index');
+        $positions = Position::orderBy('sort_order', 'asc')->get();
+        return view('admin.position.index', ['positions'=> $positions]);
     }
 
     /**
@@ -26,7 +28,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.position.create');
     }
 
     /**
@@ -37,7 +39,13 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('working'))
+            $data['working'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Position::create($data);
+        return  redirect()->route('admin.position.index');
     }
 
     /**
@@ -59,7 +67,8 @@ class PositionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $position = Position::findOrFail($id);
+        return view('admin.position.edit', ['position'=> $position]);
     }
 
     /**
@@ -71,7 +80,13 @@ class PositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('working'))
+            $data['working'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Position::findOrFail($id)->update($data);
+        return  redirect()->route('admin.position.index');
     }
 
     /**
@@ -82,6 +97,7 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Position::findOrFail($id)->delete();
+        return redirect()->route('admin.position.index');
     }
 }

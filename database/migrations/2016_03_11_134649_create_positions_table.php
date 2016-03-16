@@ -20,6 +20,7 @@ class CreatePositionsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('working');
+            $table->boolean('enable');
             $table->mediumText('description');
             $table->integer('sort_order')->default(0);
             $table->timestamps();
