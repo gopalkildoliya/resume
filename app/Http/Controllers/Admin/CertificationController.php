@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Certification;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class CertificationController extends Controller
      */
     public function index()
     {
-        return view('admin.certification.index');
+        $certifications = Certification::orderBy('sort_order', 'asc')->get();
+        return view('admin.certification.index', ['certifications'=> $certifications]);
     }
 
     /**
@@ -26,7 +28,7 @@ class CertificationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.certification.create');
     }
 
     /**
@@ -37,7 +39,13 @@ class CertificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('unlimited'))
+            $data['unlimited'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Certification::create($data);
+        return  redirect()->route('admin.certification.index');
     }
 
     /**
@@ -59,7 +67,8 @@ class CertificationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $certification = Certification::findOrFail($id);
+        return view('admin.certification.edit', ['certification'=>$certification]);
     }
 
     /**
@@ -71,7 +80,13 @@ class CertificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('unlimited'))
+            $data['unlimited'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Certification::findOrFail($id)->update($data);
+        return  redirect()->route('admin.certification.index');
     }
 
     /**
@@ -82,6 +97,7 @@ class CertificationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Certification::findOrFail($id)->delete();
+        return redirect()->route('admin.certification.index');
     }
 }

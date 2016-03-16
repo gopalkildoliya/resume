@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\PersonalDetail;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class PersonalDetailController extends Controller
      */
     public function index()
     {
-        return view('admin.personal-detail.index');
+        $detail = PersonalDetail::first();
+        return view('admin.personal-detail.index', ['detail' => $detail]);
     }
 
     /**
@@ -37,7 +39,8 @@ class PersonalDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PersonalDetail::create($request->input());
+        return  redirect()->route('admin.personal-detail.index');
     }
 
     /**
@@ -71,7 +74,8 @@ class PersonalDetailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        PersonalDetail::first()->update($request->input());
+        return  redirect()->route('admin.personal-detail.index');
     }
 
     /**

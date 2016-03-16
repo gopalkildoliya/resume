@@ -6,11 +6,11 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Project
-            <small>Edit Project</small>
+            Volunteer Experience
+            <small>Edit</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Project</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Volunteer Experience</a></li>
             <li class="active">Edit</li>
         </ol>
     </section>
@@ -21,67 +21,66 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Project Details</h3>
+                    <h3 class="box-title">Volunteer Experience Details</h3>
                 </div>
 
-                <form role="form" method="post" action="{{route('admin.project.update', ['id'=> $project->id])}}">
+                <form role="form" method="post" action="{{route('admin.volunteer.update', ['id'=> $volunteer->id])}}">
                     {!! csrf_field() !!}
                     {!! method_field('put') !!}
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name">Project Name</label>
-                            <input type="text" name="name" class="form-control" id="name" value="{{$project->name}}">
+                            <label for="organization">Organization Name</label>
+                            <input type="text" name="organization" class="form-control" id="organization" value="{{$volunteer->organization}}">
                         </div>
 
                         <div class="form-group">
-                            <label>Project Duration</label>
+                            <label>Volunteer Duration</label>
                             <div class="input-group">
                                 <div class="input-group-addon">Start Date
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="start_date" id="start_date" value="{{$project->start_date}}">
+                                <input type="text" class="form-control pull-right" name="start_date" id="start_date" value="{{$volunteer->start_date}}">
                                 <div class="input-group-addon">End Date
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="end_date" id="end_date" value="{{$project->end_date}}">
+                                <input type="text" class="form-control pull-right" name="end_date" id="end_date" value="{{$volunteer->end_date}}">
                                 <div class="input-group-addon">
-                                    <input type="checkbox" name="working" value="1" {{$project->working?"checked":""}}> Ongoing Project
+                                    <input type="checkbox" name="once" value="1" {{$volunteer->once?"checked":""}}> Once only
                                 </div>
                             </div><!-- /.input group -->
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Example block-level help text here.</p>
+                            <label for="role">Role</label>
+                            <input type="text" name="role" class="form-control" id="role" value="{{$volunteer->role}}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cause">Cause</label>
+                            <input type="text" name="cause" class="form-control" id="cause" value="{{$volunteer->cause}}">
                         </div>
 
                         <div class="form-group">
-                            <label for="url">Project Url</label>
-                            <input type="text" name="url" class="form-control" id="url" value="{{$project->url}}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="description">Project Description</label>
-                            <textarea name="description" class="form-control" id="description">{{$project->description}}</textarea>
+                            <label for="description">Description</label>
+                            <textarea name="description" class="form-control" id="description">{{$volunteer->description}}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="sort_order">Sort Order</label>
-                            <input type="text" name="sort_order" class="form-control" id="sort_order" value="{{$project->sort_order}}">
+                            <input type="text" name="sort_order" class="form-control" id="sort_order" value="{{$volunteer->sort_order}}">
                         </div>
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="enable" {{$project->enable?"checked":""}} value="1"> Show this project on resume
+                                <input type="checkbox" name="enable" {{$volunteer->enable?"checked":""}} value="1"> Show this Volunteer Experience on resume
                             </label>
                         </div>
 
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Update Project</button>
-                        <a href="{{route('admin.project.index')}}" class="btn btn-warning">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Update Volunteer Experience</button>
+                        <a href="{{route('admin.volunteer.index')}}" class="btn btn-warning">Cancel</a>
                     </div>
                 </form>
             </div><!-- /.box -->

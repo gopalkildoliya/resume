@@ -6,11 +6,11 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Project
-            <small>Edit Project</small>
+            Certification
+            <small>Edit</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Project</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Certificate</a></li>
             <li class="active">Edit</li>
         </ol>
     </section>
@@ -21,16 +21,16 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Project Details</h3>
+                    <h3 class="box-title">Certificate Details</h3>
                 </div>
 
-                <form role="form" method="post" action="{{route('admin.project.update', ['id'=> $project->id])}}">
+                <form role="form" method="post" action="{{route('admin.certification.update', ['id'=> $certification->id])}}">
                     {!! csrf_field() !!}
                     {!! method_field('put') !!}
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name">Project Name</label>
-                            <input type="text" name="name" class="form-control" id="name" value="{{$project->name}}">
+                            <label for="name">Certification Name</label>
+                            <input type="text" name="name" class="form-control" id="name" value="{{$certification->name}}">
                         </div>
 
                         <div class="form-group">
@@ -39,49 +39,48 @@
                                 <div class="input-group-addon">Start Date
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="start_date" id="start_date" value="{{$project->start_date}}">
+                                <input type="text" class="form-control pull-right" name="start_date" id="start_date" value="{{$certification->start_date}}">
                                 <div class="input-group-addon">End Date
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control pull-right" name="end_date" id="end_date" value="{{$project->end_date}}">
+                                <input type="text" class="form-control pull-right" name="end_date" id="end_date" value="{{$certification->end_date}}">
                                 <div class="input-group-addon">
-                                    <input type="checkbox" name="working" value="1" {{$project->working?"checked":""}}> Ongoing Project
+                                    <input type="checkbox" name="unlimited" value="1" {{$certification->unlimited?"checked":""}}> This certificate does not expire
                                 </div>
                             </div><!-- /.input group -->
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Example block-level help text here.</p>
+                            <label for="authority">Certification Authority</label>
+                            <input type="text" name="authority" class="form-control" id="authority" value="{{$certification->authority}}">
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="url">Project Url</label>
-                            <input type="text" name="url" class="form-control" id="url" value="{{$project->url}}">
+                            <label for="license_number">License Number</label>
+                            <input type="text" name="license_number" class="form-control" id="license_number" value="{{$certification->license_number}}">
                         </div>
-
+                        
                         <div class="form-group">
-                            <label for="description">Project Description</label>
-                            <textarea name="description" class="form-control" id="description">{{$project->description}}</textarea>
+                            <label for="url">Certification URL</label>
+                            <input type="text" name="url" class="form-control" id="url" value="{{$certification->url}}">
                         </div>
 
                         <div class="form-group">
                             <label for="sort_order">Sort Order</label>
-                            <input type="text" name="sort_order" class="form-control" id="sort_order" value="{{$project->sort_order}}">
+                            <input type="text" name="sort_order" class="form-control" id="sort_order" value="{{$certification->sort_order}}">
                         </div>
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="enable" {{$project->enable?"checked":""}} value="1"> Show this project on resume
+                                <input type="checkbox" name="enable" {{$certification->enable?"checked":""}} value="1"> Show this certificate on resume
                             </label>
                         </div>
 
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Update Project</button>
-                        <a href="{{route('admin.project.index')}}" class="btn btn-warning">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Update Certificate</button>
+                        <a href="{{route('admin.certification.index')}}" class="btn btn-warning">Cancel</a>
                     </div>
                 </form>
             </div><!-- /.box -->

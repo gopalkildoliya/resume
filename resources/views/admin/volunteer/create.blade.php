@@ -7,10 +7,10 @@
     <section class="content-header">
         <h1>
             Project
-            <small>Add new Project</small>
+            <small>Add new Volunteer Experience</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Project</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Volunteer Experience</a></li>
             <li class="active">create</li>
         </ol>
     </section>
@@ -21,19 +21,19 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Project Details</h3>
+                    <h3 class="box-title">Volunteer Experience Details</h3>
                 </div>
 
-                <form role="form" method="post" action="{{route('admin.project.store')}}">
+                <form role="form" method="post" action="{{route('admin.volunteer.store')}}">
                     {!! csrf_field() !!}
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="name">Project Name</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter project name">
+                            <label for="organization">Organization Name</label>
+                            <input type="text" name="organization" class="form-control" id="organization" placeholder="Enter Organization name">
                         </div>
 
                         <div class="form-group">
-                            <label>Project Duration</label>
+                            <label>Volunteer Duration</label>
                             <div class="input-group">
                                 <div class="input-group-addon">Start Date
                                     <i class="fa fa-calendar"></i>
@@ -44,24 +44,23 @@
                                 </div>
                                 <input type="text" class="form-control pull-right" name="end_date" id="end_date">
                                 <div class="input-group-addon">
-                                    <input type="checkbox" name="working" value="1"> Ongoing Project
+                                    <input type="checkbox" name="once" value="1"> Only one time
                                 </div>
                             </div><!-- /.input group -->
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Example block-level help text here.</p>
+                            <label for="role">Role</label>
+                            <input type="text" name="role" class="form-control" id="role" placeholder="Enter role">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cause">Cause</label>
+                            <input type="text" name="cause" class="form-control" id="cause" placeholder="Enter cause">
                         </div>
 
                         <div class="form-group">
-                            <label for="url">Project Url</label>
-                            <input type="text" name="url" class="form-control" id="url" placeholder="Enter project url">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="description">Project Description</label>
+                            <label for="description">Description</label>
                             <textarea name="description" class="form-control" id="description"></textarea>
                         </div>
 
@@ -72,15 +71,15 @@
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="enable" checked="checked" value="1"> Show this project on resume
+                                <input type="checkbox" name="enable" checked="checked" value="1"> Show this Volunteer Experience on resume
                             </label>
                         </div>
 
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Add Project</button>
-                        <a href="{{route('admin.project.index')}}" class="btn btn-warning">Cancel</a>
+                        <button type="submit" class="btn btn-primary">Add Volunteer Experience</button>
+                        <a href="{{route('admin.volunteer.index')}}" class="btn btn-warning">Cancel</a>
                     </div>
                 </form>
             </div><!-- /.box -->

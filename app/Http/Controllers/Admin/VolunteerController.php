@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Volunteer;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        return view('admin.volunteer.index');
+        $volunteers = Volunteer::orderBy('sort_order', 'asc')->get();
+        return view('admin.volunteer.index', ['volunteers'=> $volunteers]);
     }
 
     /**
@@ -26,7 +28,7 @@ class VolunteerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.volunteer.create');
     }
 
     /**
@@ -37,7 +39,13 @@ class VolunteerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('once'))
+            $data['once'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Volunteer::create($data);
+        return  redirect()->route('admin.volunteer.index');
     }
 
     /**
@@ -59,7 +67,8 @@ class VolunteerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $volunteer = Volunteer::findOrFail($id);
+        return view('admin.volunteer.edit', ['volunteer'=>$volunteer]);
     }
 
     /**
@@ -71,7 +80,13 @@ class VolunteerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->input();
+        if( ! $request->has('once'))
+            $data['once'] = false;
+        if( ! $request->has('enable'))
+            $data['enable'] = false;
+        Volunteer::findOrFail($id)->update($data);
+        return  redirect()->route('admin.volunteer.index');
     }
 
     /**
@@ -82,6 +97,7 @@ class VolunteerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Volunteer::findOrFail($id)->delete();
+        return redirect()->route('admin.volunteer.index');
     }
 }

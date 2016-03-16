@@ -9,11 +9,29 @@ section.container-fluid{
 }
 
 
-section.introduction{
+.introduction-section{
     background: #449d44;
     color: #fff;
 }
-section.project{
+.project-section{
     background: #1b8bbc;
     color: #fff;
+}
+
+.position-section{
+    background: #FB1B43;
+}
+
+.education-section{
+    background: #fb1;
+}
+
+.skill-section{
+    background: #fb1bbc;
+    
+}
+
+.certification-section{
+    background: #0505FB;
+    color:#FFF;
 }

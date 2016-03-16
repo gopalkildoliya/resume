@@ -1,10 +1,10 @@
-<section class="project-section container-fluid">
+<section class="skill-section container-fluid">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="section-heading">Projects</h2>
-                @foreach($projects as $project)
-                    {{$project->name}}
+                <h2 class="section-heading">Skills</h2>
+                @foreach($skills as $skill)
+                    {{$skill->name}}
                     <hr>
                 @endforeach
             </div>
