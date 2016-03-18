@@ -35,3 +35,8 @@ section.container-fluid{
     background: #0505FB;
     color:#FFF;
 }
+
+.progress{
+    height: 5px;
+    border-radius: 0px;
+}

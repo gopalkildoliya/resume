@@ -36,12 +36,15 @@ Route::group(['middleware' => ['web'], 'namespace' => 'Admin', 'prefix' => 'admi
     Route::resource('language', 'LanguageController');
     Route::resource('award', 'AwardController');
     Route::resource('additional', 'AdditionalController');
+    Route::resource('message', 'MessageController');
 
 });
 
+Route::post('/query', 'QueryController@index');
+
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-
+    
     Route::get('/home', 'HomeController@index');
 
 });

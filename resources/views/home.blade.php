@@ -21,4 +21,30 @@
     @if(sizeof($educations)>0)
         @include('parts.education')
     @endif
+    
+    @include('parts.contact')
+@endsection
+
+@section('scripts')
+<script>
+    $(function(){
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+});
+        $( "#contact-form" ).submit(function( event ) {
+            $("#message").html('');
+          $.post("{{url('query')}}", $( this ).serialize(), function(data){
+              if(data=="success"){
+                  $("#message").html('<span class="text-success">Thanks for your feedback/query.</span>');
+                  $("#contact-reset").click();
+              }else{
+                  $("#message").html('<span class="text-danger">Ooops... Try again.</span>');
+              }
+          });
+          event.preventDefault();
+        });
+    });
+    </script>
 @endsection
